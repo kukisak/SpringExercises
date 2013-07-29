@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+						http://www.springframework.org/schema/beans/spring-beans.xsd
+						http://www.springframework.org/schema/context 
+						http://www.springframework.org/schema/context/spring-context.xsd">
+	<!-- Enable spring framework for using annotations -->
+	<context:annotation-config/>
+	<!-- Bean definition goes here -->
+	<!-- @Qualifier annotation -->
+	<bean id="profile" class="com.tutorialspoint.annotations.Profile"/>
+	<bean id="student1" class="com.tutorialspoint.annotations.Student">
+		<property name="name" value="Hugo"/>
+		<property name="age" value="20"/>
+	</bean>
+	
+	<!-- @PostConstruct and @PreDestroy -->
+	<bean id="message" class="com.tutorialspoint.annotations.Message">
+		<property name="message" value="Hello world"/>
+	</bean>	
+
+	<!-- @Resource annotation -->
+	<bean id="resourcedProfile" class="com.tutorialspoint.annotations.ResourcedProfile"/>
+	<bean id="student2" class="com.tutorialspoint.annotations.Student">
+		<property name="name" value="Premysl"/>
+		<property name="age" value="15"/>
+	</bean>	
+
+	<!-- @Required, @Autowired -->
+	<bean id="student" class="com.tutorialspoint.annotations.Student">
+		<property name="name" value="Zara"/>
+		<!-- @Required annotation -->
+		<!-- Following commented line will throw an BeanInitializationException: Property 'age' is required for bean 'student'  -->
+		<property name="age" value="13"/>
+		<!-- @Autowired(required=false) annotation -->
+		<!-- Following property have not be defined because of annotation above -->
+		<!-- <property name="year" value="2001"/> -->
+	</bean>
+	<bean id="spellChecker" class="com.tutorialspoint.annotations.SpellChecker"/>
+	<bean id="enhancedSpellChecker" class="com.tutorialspoint.annotations.EnhancedSpellChecker"/>
+	<bean id="constEnhancedSpellChecker" class="com.tutorialspoint.annotations.ConstructorEnhancedSpellChecker"/>
+	<bean id="textEditor" class="com.tutorialspoint.annotations.TextEditor">
+		<!-- <constructor-arg ref="constEnhancedSpellChecker"/> -->
+	</bean>
+</beans>	

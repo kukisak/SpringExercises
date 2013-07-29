@@ -1,0 +1,147 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd"
+	default-init-method="init"
+	default-destroy-method="destroy">
+
+	<bean class="com.tutorialspoint.InitHelloWorld"/>
+	<bean id="beanTemplate" abstract="true">
+		<property name="message" value="Template Hello World msg!"/>
+		<property name="message1" value="Template Hello World msg1"/>
+		<property name="message2" value="Template Hello World msg2"/>
+	</bean>
+
+	<bean id="helloWorld" class="com.tutorialspoint.HelloWorld" scope="singleton">
+		<property name="message" value="Original Hello World 1"/>
+		<property name="message1" value="Hello World msg1"/>
+	</bean>
+	<bean id="secondHelloWorld" class="com.tutorialspoint.SecondHelloWorld" scope="prototype">
+		<!-- init-method="init" destroy-method="destroy" --> 
+		<property name="message" value="Original Hello World 2"/>
+	</bean>
+	<bean id="helloIndia" class="com.tutorialspoint.HelloIndia" parent="helloWorld">
+		<property name="message" value="Hello India!"/>
+		<property name="message2" value="Namaste India!"/>		
+	</bean>
+	<bean id="helloFromTemplate" class="com.tutorialspoint.HelloFromTemplate" parent="beanTemplate">
+		<property name="message" value="Hello From Template msg !"/>
+		<property name="message2" value="Hello From Template msg2 !"/>
+	</bean>
+	
+	<!-- Vnorena beana -->
+	<bean id="textEditor" class="com.tutorialspoint.di.TextEditor">
+		<property name="spellChecker">
+				<bean id="spellChecker" class="com.tutorialspoint.di.SpellChecker"/>
+		</property>
+	</bean>
+	
+	<!-- Referencovana beana -->
+	<bean id="textEditorRef" class="com.tutorialspoint.di.TextEditor">
+		<property name="spellChecker" ref="spellCheckerRef"/>
+	</bean>	
+	<bean id="spellCheckerRef" class="com.tutorialspoint.di.SpellChecker"/>
+
+	<!-- Autowire byName -->
+	<bean id="textEditorByName" class="com.tutorialspoint.autowiring.TextEditorByName" autowire="byName">
+		<property name="name" value="Default Text Editor"/>
+	</bean>	
+	<bean id="spellCheckerByName" class="com.tutorialspoint.autowiring.SpellCheckerByName"/>
+	
+	<!-- Autowire byType -->
+	<bean id="textEditorByType" class="com.tutorialspoint.autowiring.TextEditorByType" autowire="byType">
+		<property name="name" value="Text editor by type"/>
+	</bean>
+	<bean id="spellCheckerByType1" class="com.tutorialspoint.autowiring.SpellCheckerByType"/>
+	<!-- This bean definition will thrown an NoUniqueBeanDefinitionException  
+	<bean id="spellCheckerByType2" class="com.tutorialspoint.autowiring.SpellCheckerByType"/>
+	-->
+	
+	<!-- Autowire byConstructor -->
+	<bean id="textEditorByConstructor" class="com.tutorialspoint.autowiring.TextEditorByConstructor" 
+		autowire="constructor">
+		<constructor-arg value="Generic text editor by Constructor"/>
+	</bean>
+	<bean id="spellCheckerByConstructor1" class="com.tutorialspoint.autowiring.SpellCheckerByConstructor"/>
+	
+	<!-- Java Collections -->
+	<bean id="javaCollection" class="com.tutorialspoint.injectcollections.JavaCollection">
+		<property name="addressList">
+			<list>
+				<value>India</value>
+				<value>Pakistan</value>
+				<value>USA</value>
+				<value>USA</value>		
+			</list>	
+		</property>
+		<property name="addressSet">
+			<set>
+				<value>India</value>
+				<value>Pakistan</value>
+				<value>USA</value>
+				<value>USA</value>		
+			</set>	
+		</property>		
+		<property name="addressMap">
+			<map>
+				<entry key="1" value="India"/>
+				<entry key="2" value="Pakistan"/>
+				<entry key="3" value="USA"/>
+				<entry key="4" value="USA"/>		
+			</map>
+		</property>
+		<property name="addressProps">
+			<props>
+				<prop key="one">India</prop>
+				<prop key="two">Pakistan</prop>
+				<prop key="three">USA</prop>
+				<prop key="four">USA</prop>		
+			</props>
+				
+		</property>
+
+	</bean>
+	<!-- Referenced beans in collections -->
+	<bean id="address1" class="com.tutorialspoint.injectcollections.Address">
+		<property name="address" value="Adresa 1"/>
+	</bean>
+	<bean id="address2" class="com.tutorialspoint.injectcollections.Address">
+		<property name="address" value="Adresa 2"/>
+	</bean>
+	<bean id="emptyAddress" class="com.tutorialspoint.injectcollections.Address">
+		<property name="address" value=""/>
+	</bean>
+	<bean id="nullAddress" class="com.tutorialspoint.injectcollections.Address">
+		<property name="address"><null/></property>
+	</bean>
+	<bean id="javaCollectionRefs" class="com.tutorialspoint.injectcollections.JavaCollection">
+		<property name="addressList">
+			<list>
+				<ref bean="address1"/>
+				<ref bean="address2"/>
+				<ref bean="emptyAddress"/>
+				<ref bean="nullAddress"/>
+				<value>Pakistan</value>		
+			</list>
+		</property>
+		<property name="addressSet">
+			<set>
+				<ref bean="address1"/>
+				<ref bean="address1"/>
+				<ref bean="address2"/>
+				<value>Pakistan</value>		
+			</set>			
+		</property>
+		<property name="addressMap">
+			<map>
+				<entry key="one" value-ref="address1"/>
+				<entry key="two" value-ref="address2"/>
+				<entry key="three" value="Pakistan"/>		
+			</map>	
+		</property>
+	</bean>
+
+</beans>
+	
