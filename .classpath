@@ -6,9 +6,9 @@
 	<classpathentry kind="lib" path="C:/Program Files/eclipse4.2.2/plugins/org.aspectj.ajde_1.7.3.20130613144500-a.jar"/>
 	<classpathentry kind="lib" path="C:/Program Files/eclipse4.2.2/plugins/org.aspectj.runtime_1.7.3.20130613144500-a.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Spring 4.0"/>
-	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Log4j 2"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/MySQL connector 5.1"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Aopaliance"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Apache commons logging"/>
+	<classpathentry kind="con" path="org.eclipse.jdt.USER_LIBRARY/Log4j 1.2"/>
 	<classpathentry kind="output" path="bin"/>
 </classpath>

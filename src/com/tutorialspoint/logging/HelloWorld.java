@@ -1,4 +1,4 @@
-package com.tutorialspoint.log4j;
+package com.tutorialspoint.logging;
 
 public class HelloWorld {
 

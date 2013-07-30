@@ -6,7 +6,7 @@
 	http://www.springframework.org/schema/beans
 	http://www.springframework.org/schema/beans/spring-beans.xsd" >
 	
-	<bean id="helloWorld" class="com.tutorialspoint.log4j.HelloWorld">
+	<bean id="helloWorld" class="com.tutorialspoint.logging.HelloWorld">
 		<property name="message" value="Hello World" />
 	</bean>
 
